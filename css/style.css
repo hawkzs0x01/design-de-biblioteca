@@ -1,0 +1,343 @@
+/* ==========================================================================
+   1. CONFIGURAÇÕES GLOBAIS E VARIÁVEIS
+   Aqui defino as cores padrão do site, a fonte e faço um reset básico
+   para garantir que o layout se comporte de forma consistente em todos os navegadores.
+   ========================================================================== */
+:root {
+    --azul-principal: #005A9C;
+    --azul-secundario: #007BFF;
+    --cinza-texto: #343a40;
+    --cinza-fundo: #f8f9fa;
+    --cinza-escuro-fundo: #212529;
+    --branco: #FFFFFF;
+    --borda: #dee2e6;
+    --sombra: 0 4px 12px rgba(0, 0, 0, 0.1);
+    --header-height: 80px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth; /* Animação de rolagem suave ao clicar nos links do menu */
+    scroll-padding-top: var(--header-height); /* Evita que o cabeçalho fixo cubra o título das seções */
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.7;
+    background-color: var(--branco);
+    color: var(--cinza-texto);
+}
+
+/* Classe utilitária para centralizar o conteúdo principal das seções */
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+h2 {
+    font-size: 2.5rem;
+    text-align: center;
+    color: var(--azul-principal);
+    margin-bottom: 3rem;
+}
+
+section {
+    padding: 4rem 0;
+}
+
+/* ==========================================================================
+   2. CABEÇALHO E NAVEGAÇÃO
+   Estilos para a barra de navegação no topo da página.
+   ========================================================================== */
+.main-header {
+    background-color: var(--branco);
+    box-shadow: var(--sombra);
+    position: sticky; /* Mantém o cabeçalho fixo no topo ao rolar a página */
+    top: 0;
+    z-index: 100;
+    padding: 1rem 0;
+    height: var(--header-height);
+}
+
+.main-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
+
+.logo {
+    font-size: 1.5rem;
+    color: var(--azul-principal);
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.main-nav ul {
+    display: flex;
+    list-style: none;
+    gap: 1.5rem; /* Espaçamento entre os itens do menu */
+}
+
+.main-nav a {
+    text-decoration: none;
+    color: var(--cinza-texto);
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.main-nav a:hover {
+    color: var(--azul-secundario);
+}
+
+/* ==========================================================================
+   3. SEÇÕES PRINCIPAIS DA PÁGINA
+   Estilos para cada bloco de conteúdo: Banner, Sobre, Livros, etc.
+   ========================================================================== */
+
+/* --- Banner Principal (Hero Section) --- */
+#banner {
+    background-image: url('../images/biblioteca-capa.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 60vh;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: var(--branco);
+    position: relative;
+}
+
+/* Camada escura sobre o banner para dar mais contraste ao texto */
+#banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 1;
+}
+
+#banner .container {
+    position: relative; /* Garante que o texto fique acima da camada escura */
+    z-index: 2;
+}
+
+#banner h1 {
+    font-size: 3.5rem;
+}
+#banner p {
+    font-size: 1.2rem;
+    font-weight: 300;
+}
+
+/* --- Seção Sobre --- */
+.sobre-content {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+    margin-bottom: 2rem;
+}
+.sobre-texto {
+    flex: 1; /* Ocupa metade do espaço disponível */
+}
+.sobre-content img {
+    flex: 1;
+    max-width: 450px;
+    border-radius: 8px;
+    box-shadow: var(--sombra);
+}
+
+.sobre-galeria {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 colunas */
+    gap: 1rem;
+    margin-top: 2rem;
+}
+.sobre-galeria img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover; /* Faz a imagem preencher o espaço sem distorcer */
+    border-radius: 8px;
+    box-shadow: var(--sombra);
+}
+
+/* --- Seção Livros --- */
+#livros {
+    background-color: var(--cinza-fundo);
+}
+
+.livros-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 colunas de livros */
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.livro-card {
+    background: var(--branco);
+    border-radius: 8px;
+    box-shadow: var(--sombra);
+    text-align: center;
+    padding: 1.5rem;
+    transition: transform 0.3s ease; /* Efeito de elevação suave */
+}
+
+.livro-card:hover {
+    transform: translateY(-10px);
+}
+
+.livro-card img {
+    max-width: 80%;
+    height: 250px;
+    object-fit: contain; /* 'Contain' evita cortar as capas dos livros */
+    margin-bottom: 1rem;
+    border-radius: 4px;
+}
+
+.livro-card h3 {
+    color: var(--azul-principal);
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+}
+.livro-card p {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+.livro-card p strong {
+    color: var(--azul-secundario);
+}
+
+.btn {
+    display: inline-block;
+    padding: 0.7rem 1.5rem;
+    background-color: var(--azul-principal);
+    color: var(--branco);
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: var(--azul-secundario);
+}
+
+.btn-mais-livros {
+    text-align: center;
+    margin-top: 2rem;
+}
+.btn.large-btn {
+    padding: 1rem 2.5rem;
+    font-size: 1.1rem;
+}
+
+/* --- Seção Unidades --- */
+#unidades {
+    background-color: var(--cinza-escuro-fundo);
+    color: var(--cinza-fundo);
+}
+#unidades h2 {
+    color: var(--branco);
+}
+
+.unidade-item {
+    display: flex;
+    gap: 2.5rem;
+    align-items: center;
+    margin-bottom: 4rem;
+}
+.unidade-item:last-child {
+    margin-bottom: 0;
+}
+/* Efeito de zigue-zague: inverte a ordem de imagem e texto para itens ímpares */
+.unidade-item:nth-child(odd) {
+    flex-direction: row-reverse;
+}
+.unidade-item img {
+    width: 50%;
+    max-width: 550px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: var(--sombra);
+}
+.unidade-texto {
+    width: 50%;
+}
+.unidade-texto h3 {
+    color: var(--azul-principal);
+    font-size: 1.8rem;
+}
+
+/* ==========================================================================
+   4. RODAPÉ
+   ========================================================================== */
+.main-footer {
+    background-color: var(--cinza-escuro-fundo);
+    color: var(--cinza-fundo);
+    padding: 4rem 0;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    align-items: flex-start;
+}
+.footer-texto {
+    flex: 2;
+}
+.footer-mapa {
+    flex: 1;
+}
+.footer-mapa img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* ==========================================================================
+   5. RESPONSIVIDADE (Layouts para Telas Menores)
+   ========================================================================== */
+@media (max-width: 992px) { /* Para tablets e telas menores */
+    .livros-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .unidade-item, .unidade-item:nth-child(odd) {
+        flex-direction: column;
+        text-align: center;
+    }
+    .unidade-item img, .unidade-texto {
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) { /* Para celulares na horizontal e tablets na vertical */
+    h2 { font-size: 2rem; }
+    .main-header { height: auto; padding: 1.5rem 0; }
+    html { scroll-padding-top: 150px; } /* Ajuste maior para menu que quebra linha */
+    .main-header .container { flex-direction: column; gap: 1rem; }
+    .main-nav ul { flex-wrap: wrap; justify-content: center; }
+    .sobre-content { flex-direction: column; }
+    .sobre-content img { max-width: 100%; }
+    .sobre-galeria { grid-template-columns: 1fr 1fr; }
+    .livros-grid { grid-template-columns: 1fr; }
+    .footer-content { flex-direction: column; text-align: center; }
+    .footer-mapa img { margin-top: 1.5rem; }
+}
+
+@media (max-width: 576px) { /* Para celulares na vertical */
+    #banner h1 { font-size: 2.5rem; }
+    #banner p { font-size: 1rem; }
+    .sobre-galeria { grid-template-columns: 1fr; }
+}
