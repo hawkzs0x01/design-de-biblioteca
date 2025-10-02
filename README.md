@@ -8,7 +8,7 @@
 
 ### 🖥️ Pré-visualização
 
-![Preview do Site](preview.png)
+![Preview do Site](images/preview.png)
 
 
 ---
